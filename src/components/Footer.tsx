@@ -1,0 +1,250 @@
+import React from 'react';
+import { Facebook, Youtube, Send, Instagram, Mail, MapPin, Headphones } from 'lucide-react';
+import { useStore } from '../context/StoreContext.tsx';
+import { tr, translateSiteDefault } from '../i18n.ts';
+import { PWAInstallButton } from './PWAInstallButton.tsx';
+
+export function Footer() {
+  const { settings, navigate, canShowCustomerDownload, language } = useStore();
+
+  const taglineText = translateSiteDefault(
+    settings?.tagline,
+    'THE FUTURE OF SHOPPING 🛍️',
+    'কেনাকাটার ভবিষ্যৎ 🛍️',
+    language
+  );
+  const sloganText = translateSiteDefault(
+    settings?.logo_slogan,
+    'SHOP • DISCOVER • ENJOY',
+    'কিনুন • জানুন • উপভোগ করুন',
+    language
+  );
+  const addressText = translateSiteDefault(
+    settings?.business_address,
+    'Rangpur, Bangladesh · Global Fulfillment',
+    'রংপুর, বাংলাদেশ · গ্লোবাল ডেলিভারি',
+    language
+  );
+
+  return (
+    <footer className="bg-zinc-950 text-zinc-300 border-t border-[#C9A227]/30">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
+        {/* Brand */}
+        <div className="lg:col-span-2 space-y-4">
+          <div className="space-y-1">
+            <h2 className="font-display text-2xl font-semibold tracking-[0.14em] text-white">
+              {settings?.brand_name || 'SHOPNEXA ROBI HUB'}
+            </h2>
+            <p className="text-xs font-semibold tracking-[0.2em] text-[#E4C76B]">
+              {taglineText}
+            </p>
+            <p className="text-[10px] font-medium tracking-[0.24em] text-zinc-400">
+              {sloganText}
+            </p>
+          </div>
+          <p className="text-xs text-zinc-400 leading-relaxed max-w-sm">
+            {tr(
+              language,
+              'A global shopping destination uniting direct-selling quality with verified international partner collections.',
+              'সরাসরি নিজস্ব মানসম্মত পণ্য এবং যাচাইকৃত আন্তর্জাতিক পার্টনার কালেকশনের এক নির্ভরযোগ্য গ্লোবাল শপিং গন্তব্য।'
+            )}
+          </p>
+
+          {/* Official Social Media Icons */}
+          <div className="flex flex-wrap items-center gap-3 pt-2">
+            <a
+              href={settings?.facebook_url || 'https://www.facebook.com/share/1WFDAntMgp/'}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="SHOPNEXA ROBI HUB Facebook Page"
+              title={tr(language, 'Facebook Page', 'ফেসবুক পেজ')}
+              className="w-9 h-9 border border-zinc-800 hover:border-[#C9A227] flex items-center justify-center text-zinc-300 hover:text-[#E4C76B] transition-colors"
+            >
+              <Facebook className="w-4 h-4" />
+            </a>
+            <a
+              href={settings?.youtube_url || 'https://www.youtube.com/@shopnexamarketplase'}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="SHOPNEXA ROBI HUB YouTube Channel"
+              title={tr(language, 'YouTube Channel', 'ইউটিউব চ্যানেল')}
+              className="w-9 h-9 border border-zinc-800 hover:border-[#C9A227] flex items-center justify-center text-zinc-300 hover:text-[#E4C76B] transition-colors"
+            >
+              <Youtube className="w-4 h-4" />
+            </a>
+            <a
+              href={settings?.telegram_channel_url || 'https://t.me/shopnexamarketplase'}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="SHOPNEXA ROBI HUB Telegram Channel"
+              title={tr(language, 'Telegram Channel', 'টেলিগ্রাম চ্যানেল')}
+              className="w-9 h-9 border border-zinc-800 hover:border-[#C9A227] flex items-center justify-center text-zinc-300 hover:text-[#E4C76B] transition-colors"
+            >
+              <Send className="w-4 h-4" />
+            </a>
+            <a
+              href={settings?.instagram_url || 'https://www.instagram.com/shopnexa978?knvt=NTd5OHhtMDN6bGc3'}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="SHOPNEXA ROBI HUB Instagram Profile"
+              title={tr(language, 'Instagram Profile', 'ইনস্টাগ্রাম')}
+              className="w-9 h-9 border border-zinc-800 hover:border-[#C9A227] flex items-center justify-center text-zinc-300 hover:text-[#E4C76B] transition-colors"
+            >
+              <Instagram className="w-4 h-4" />
+            </a>
+            <a
+              href={settings?.telegram_support_url || 'https://t.me/ShoponexaMarketplaseSuport'}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="SHOPNEXA ROBI HUB Telegram Customer Support"
+              title={tr(language, 'Telegram Customer Support', 'টেলিগ্রাম সাপোর্ট')}
+              className="w-9 h-9 border border-zinc-800 hover:border-[#C9A227] flex items-center justify-center text-zinc-300 hover:text-[#E4C76B] transition-colors"
+            >
+              <Headphones className="w-4 h-4" />
+            </a>
+          </div>
+          <div className="flex flex-wrap gap-2.5 pt-1">
+            <a
+              href={settings?.telegram_channel_url || 'https://t.me/shopnexamarketplase'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-[#C9A227] hover:bg-[#E4C76B] text-black text-xs font-semibold transition-colors"
+            >
+              <Send className="w-3.5 h-3.5" />
+              <span>{tr(language, 'Join Telegram Channel', 'টেলিগ্রাম চ্যানেলে যুক্ত হন')}</span>
+            </a>
+            <a
+              href={settings?.telegram_support_url || 'https://t.me/ShoponexaMarketplaseSuport'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 border border-zinc-700 hover:border-[#C9A227] text-white hover:text-[#E4C76B] text-xs font-semibold transition-colors"
+            >
+              <Headphones className="w-3.5 h-3.5" />
+              <span>{tr(language, 'Telegram Support', 'টেলিগ্রাম সাপোর্ট')}</span>
+            </a>
+            {canShowCustomerDownload && (
+              <PWAInstallButton variant="footer" label={tr(language, 'Download App', 'অ্যাপ ডাউনলোড')} />
+            )}
+          </div>
+        </div>
+
+        {/* Customer Service */}
+        <div className="space-y-3 text-xs">
+          <h3 className="font-semibold text-white tracking-wider">{tr(language, 'CUSTOMER SERVICE', 'কাস্টমার সার্ভিস')}</h3>
+          <ul className="space-y-2 text-zinc-400">
+            <li>
+              <a
+                href={settings?.telegram_support_url || 'https://t.me/ShoponexaMarketplaseSuport'}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#E4C76B] transition-colors"
+              >
+                {tr(language, 'Telegram Support', 'টেলিগ্রাম সাপোর্ট')} ({settings?.telegram_support_username || '@ShoponexaMarketplaseSuport'})
+              </a>
+            </li>
+            <li>
+              <button type="button" onClick={() => navigate({ page: 'track' })} className="hover:text-[#E4C76B]">
+                {tr(language, 'Order Tracking', 'অর্ডার ট্র্যাকিং')}
+              </button>
+            </li>
+            <li>
+              <button type="button" onClick={() => navigate({ page: 'policy', policyKey: 'shipping_policy' })} className="hover:text-[#E4C76B]">
+                {tr(language, 'Shipping Information', 'শিপিং ও ডেলিভারি তথ্য')}
+              </button>
+            </li>
+            <li>
+              <button type="button" onClick={() => navigate({ page: 'policy', policyKey: 'return_policy' })} className="hover:text-[#E4C76B]">
+                {tr(language, 'Return Policy', 'রিটার্ন নীতিমালা')}
+              </button>
+            </li>
+            <li>
+              <button type="button" onClick={() => navigate({ page: 'policy', policyKey: 'refund_policy' })} className="hover:text-[#E4C76B]">
+                {tr(language, 'Refund Policy', 'রিফান্ড নীতিমালা')}
+              </button>
+            </li>
+            <li>
+              <button type="button" onClick={() => navigate({ page: 'policy', policyKey: 'faq' })} className="hover:text-[#E4C76B]">
+                {tr(language, 'FAQ', 'সাধারণ প্রশ্নোত্তর (FAQ)')}
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        {/* Shopping & Company */}
+        <div className="space-y-3 text-xs">
+          <h3 className="font-semibold text-white tracking-wider">{tr(language, 'SHOPPING & COMPANY', 'শপিং ও প্রতিষ্ঠান')}</h3>
+          <ul className="space-y-2 text-zinc-400">
+            <li>
+              <button type="button" onClick={() => navigate({ page: 'shop', filter: 'all' })} className="hover:text-[#E4C76B]">
+                {tr(language, 'All Products', 'সকল পণ্য')}
+              </button>
+            </li>
+            <li>
+              <button type="button" onClick={() => navigate({ page: 'shop', filter: 'own' })} className="hover:text-[#E4C76B]">
+                {tr(language, 'Direct Collection', 'সরাসরি নিজস্ব কালেকশন')}
+              </button>
+            </li>
+            <li>
+              <button type="button" onClick={() => navigate({ page: 'shop', filter: 'discount' })} className="hover:text-[#E4C76B]">
+                {tr(language, 'Special Offers', 'বিশেষ ছাড় ও অফার')}
+              </button>
+            </li>
+            <li>
+              <button type="button" onClick={() => navigate({ page: 'policy', policyKey: 'about_story' })} className="hover:text-[#E4C76B]">
+                {tr(language, 'About Us', 'আমাদের সম্পর্কে')}
+              </button>
+            </li>
+            <li>
+              <button type="button" onClick={() => navigate({ page: 'policy', policyKey: 'privacy_policy' })} className="hover:text-[#E4C76B]">
+                {tr(language, 'Privacy Policy', 'প্রাইভেসি পলিসি')}
+              </button>
+            </li>
+            <li>
+              <button type="button" onClick={() => navigate({ page: 'policy', policyKey: 'terms_conditions' })} className="hover:text-[#E4C76B]">
+                {tr(language, 'Terms & Conditions', 'শর্তাবলী')}
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        {/* Contact Information */}
+        <div className="space-y-3 text-xs">
+          <h3 className="font-semibold text-white tracking-wider">{tr(language, 'CONTACT', 'যোগাযোগ')}</h3>
+          <div className="space-y-2.5 text-zinc-400">
+            <div className="flex items-start gap-2">
+              <Mail className="w-4 h-4 text-[#C9A227] shrink-0 mt-0.5" />
+              <span>{settings?.contact_email || 'support@shopnexa.global'}</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <MapPin className="w-4 h-4 text-[#C9A227] shrink-0 mt-0.5" />
+              <span>{addressText}</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <Send className="w-4 h-4 text-[#C9A227] shrink-0 mt-0.5" />
+              <a
+                href={settings?.telegram_support_url || 'https://t.me/ShoponexaMarketplaseSuport'}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#E4C76B] hover:underline"
+              >
+                {settings?.telegram_support_username || '@ShoponexaMarketplaseSuport'}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="border-t border-zinc-900 py-5 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-500">
+          <p>
+            © {new Date().getFullYear()} {settings?.brand_name || 'SHOPNEXA ROBI HUB'}.{' '}
+            {tr(language, 'All rights reserved.', 'সর্বস্বত্ব সংরক্ষিত।')}
+          </p>
+          <p className="text-center sm:text-right">
+            {sloganText} — {tr(language, 'Global Direct Marketplace · Rangpur, Bangladesh', 'গ্লোবাল ডাইরেক্ট মার্কেটপ্লেস · রংপুর, বাংলাদেশ')}
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}
